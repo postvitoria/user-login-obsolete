@@ -1,0 +1,780 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+:root {
+    --clr: #fff;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /*background-image: url("../img/background.jpg");*/
+    background-color: #333;
+}
+
+.navigation {
+    width: 400px;
+    height: 70px;
+    background: #222;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    bottom: 3%;
+}
+
+.navigation ul {
+    display: flex;
+    width: 350px;
+}
+
+.navigation ul li{
+    position: relative;
+    list-style: none;
+    width: 70px;
+    height: 70px;
+}
+
+.navigation ul li a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.navigation ul li a .icon{ 
+    position: relative;
+    display: block;
+    line-height: 75px;
+    font-size: 1.5em;
+    text-align: center;
+    transition: 0.5s;
+    color: var(--clr);
+    z-index: 1;
+}
+
+.navigation ul li.active a .icon{
+    transform: translateY(-32px);
+}
+
+.navigation ul li a .text {
+    position: absolute;
+    color: var(--clr);
+    font-weight: 400;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.navigation ul li.active a .text{
+    opacity: 1;
+    transform: translateY(10px);
+}
+
+.indicator {
+    position: absolute;
+    top: -50%;
+    width: 70px;
+    height: 70px;
+    background: rgb(0, 159, 108);
+    border-radius: 50%;
+    border: 5px solid #333;
+    transition: 0.5s;
+}
+
+.indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -22px;
+    width: 20px;
+    height: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 1px -10px 0 0 #333;
+}
+
+.indicator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -22px;
+    width: 20px;
+    height: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: -1px -10px 0 0 #333;
+}
+
+.navigation ul li:nth-child(1).active ~ .indicator {
+    transform: translateX(calc(70px * 0));
+}
+
+.navigation ul li:nth-child(2).active ~ .indicator {
+    transform: translateX(calc(70px * 1));
+}
+
+.navigation ul li:nth-child(3).active ~ .indicator {
+    transform: translateX(calc(70px * 2));
+}
+
+.navigation ul li:nth-child(4).active ~ .indicator {
+    transform: translateX(calc(70px * 3));
+}
+
+.navigation ul li:nth-child(5).active ~ .indicator {
+    transform: translateX(calc(70px * 4));
+}
+
+.social-container {
+    margin-bottom: 5%;
+    left: 5%;
+    width: 88%;
+    height: 80%;
+    position: absolute;
+    opacity: 0;
+}
+
+.messages-container {
+    position: absolute;
+    width: 60%;
+    height: 75%;
+    float: right;
+    top: 4.7%;
+    left: 35%;
+    border-radius: 20px;
+    box-shadow: -15px 10px 35px rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid rgb(0, 159, 108);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+    border-top: 2px solid rgb(0, 159, 108);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    opacity: 0;
+}
+
+.chatbox-ellipses-outline {
+    position: relative;
+    top: 35%;
+    left: 45%;
+    width: 110px;
+    height: 110px;
+    color: rgb(0, 159, 108);
+}
+
+.start-chat {
+    position: relative;
+    top: 37%;
+    left: 24%;
+    text-align: center;
+    display: block;
+    max-width: 500px;
+    font-size: 25px;
+    color: rgb(0, 159, 108);
+}
+
+.contacts-container {
+    width: 30%;
+    max-height: 70%;
+    color: white;
+    position: relative;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: -15px 10px 35px rgba(0, 0, 0, 0.5);
+    user-select: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    float: left;
+}
+
+.self-profile {
+    width: 30%;
+    height: 25%;
+    position: relative;
+    border-top: 2px solid rgb(0, 159, 108);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: -15px 10px 35px rgba(0, 0, 0, 0.5);
+}
+
+.self-profile img {
+    margin: 20px;
+    position: absolute; /* Cambiado a 'absolute' */
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+}
+
+.self-profile ion-icon {
+    width: 25px;
+    height: 25px;
+    color: rgb(0, 159, 108);
+    position: absolute; /* Cambiado a 'absolute' */
+    bottom: 90px; /* Ajustado el valor de 'bottom' */
+    right: 35px; /* Agregado un valor para 'right' */
+    cursor: pointer;
+}
+
+/*.self-profile ion-icon:nth-child(2) {
+    right: 75px;
+}
+
+.self-profile ion-icon:nth-child(3) {
+    right: 40px;
+}*/
+
+.contact {
+    position: relative;
+    width: 100%;
+    height: 10%;
+    border-top: 2px solid rgb(0, 159, 108);
+    
+    background-color: #222;
+}
+
+.contact:last-child {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom: 2px solid rgb(0, 159, 108);
+}
+
+.contact img {
+    margin: 20px;
+    position: relative;
+    border-radius: 50px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.contact ion-icon {
+    margin-right: 20px;
+    width: 25px;
+    height: 25px;
+    color: rgb(0, 159, 108);
+    position: absolute;
+    bottom: 35%;
+    right: 5%;
+    cursor: pointer;
+}
+
+.contact-name {
+    position: absolute;
+    font-size: 18px;
+    left: 22%;
+    top: 30%;
+}
+
+.contact-lastmessage {
+    position: absolute;
+    font-size: 12px;
+    top: 60%;
+    left: 22%;
+    color: rgb(172, 172, 172);
+    max-width: 200px; /* Establece el ancho máximo del párrafo */
+    overflow: hidden; /* Oculta el texto que desborda del contenedor */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos (...) si el texto desborda */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+.contact:hover {
+    background-color: #333;
+}
+
+.search-input {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+    background-color: #222;
+    box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+    border-radius: 0.4vw;
+    border: none;
+    outline: none;
+    padding: 0.8vw;
+    transition: .4s;
+    width: 90%;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    bottom: 7px;
+    position: absolute;
+}
+
+.message-input {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+    background-color: #333;
+    box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+    border-radius: 0.4vw;
+    border: none;
+    outline: none;
+    padding: 0.8vw;
+    transition: .4s;
+    width: 65%;
+    bottom: 25%;
+    left: 17%;
+    position: absolute;
+}
+
+.contacts-input {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+    background-color: #333;
+    box-shadow: 0 0 .4vw rgba(0,0,0,0.5), 0 0 0 .15vw transparent;
+    border-radius: 0.4vw;
+    border: none;
+    outline: none;
+    padding: 0.8vw;
+    transition: .4s;
+    width: 55%;
+    bottom: 25%;
+    left: 12%;
+    position: absolute;
+}
+
+.add-contact-btn {
+    position: absolute;
+    width: 160px;
+    height: 40px;
+    background-color: rgb(0, 159, 108);
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+    line-height: 2.5rem;
+    color: white;
+    border-radius: 5px;
+    right: 8%;
+    top: 25%;
+}
+
+.inputs-container {
+    bottom: 0;
+    background-color: #222;
+    position: absolute;
+    user-select: none;
+    width: 100%;
+    height: 15%;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+    opacity: 0;
+}
+
+.happy-outline {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    top: 25%;
+    left: 4%;
+    color: rgb(0, 159, 108);
+    cursor: pointer;
+}
+
+.add-outline {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    top: 25%;
+    left: 6%;
+    color: rgb(0, 159, 108);
+    cursor: pointer;
+}
+
+.send-outline {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 25%;
+    color: rgb(0, 159, 108);
+    cursor: pointer;
+    right: 7.5%;
+}
+
+.chat-info-container {
+    top: 0;
+    width: 100%;
+    height: 15%;
+    user-select: none;
+    position: absolute;
+    background-color: #222;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+
+   /* opacity: 0; */
+}
+
+.chat-img {
+    margin: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.chat-name {
+    position: absolute;
+    top: 40%;
+    align-self: center;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+.chat-info-container ion-icon {
+    position: absolute;
+    color: rgb(0, 159, 108);
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    right: 5%;
+    top: 35%;
+}
+
+.message-container {
+    width: 100%;
+    margin: 2px 2px; /* Ajuste aquí para un espaciado uniforme */
+    transition: 1s;
+    clear: both; /* Agregado para evitar la disposición en línea */
+}
+
+.message-user-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    margin-right: 0; 
+    margin-left: 20px;
+    float: left;
+}
+
+.message-user-name {
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+}
+
+.message {
+    background-color: #222;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    max-width: 500px;
+    word-wrap: break-word;
+    display:inline-block;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+.message-container.yours .message {
+    margin-left: 0; 
+    margin-right: 20px;
+    float: right;
+}
+
+.message p {
+    color: white;
+    margin: 0;
+    font-size: 14px;
+    max-width: 250px;
+}
+
+.timestamp {
+    font-size: 12px;
+    color: #777;
+    display: block;
+    margin-top: 5px;
+    text-align: right;
+    user-select: none;
+} 
+
+.contact-message-notify {
+    position: absolute;
+    background-color: rgb(193, 30, 30);
+    color: white;
+    width: 15px;
+    height: 15px;
+    border-radius: 20px;
+    z-index: 5;
+    top: 22%;
+    left: 14%;
+    text-align: center;
+    font-size: 12px;
+    align-items: center;
+}
+
+.message-notify {
+    position: absolute;
+    background-color: rgb(193, 30, 30);
+    color: white;
+    width: 15px;
+    height: 15px;
+    border-radius: 20px;
+    z-index: 5;
+    top: 22%;
+    left: 60%;
+    text-align: center;
+    font-size: 12px;
+    align-items: center;
+}
+
+.message-img {
+    max-width: 426px;
+    max-height: 240px;
+    cursor: pointer;
+}
+
+.contacts-requests-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 85%;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.contacts-requests-container div:first-child {
+    border-top: 2px solid rgb(0, 159, 108);
+    border-bottom: 2px solid rgb(0, 159, 108);
+}
+
+/* Aplicar border-bottom a los demás hijos */
+.contacts-requests-container div:not(:first-child) {
+    border-bottom: 2px solid rgb(0, 159, 108);
+}
+
+.contact-request {
+    position: relative;
+    width: 100%;
+    height: 20%;
+}
+
+.contact-request img {
+    position: relative;
+    margin: 17px;
+    left: 2%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.contact-request p{
+    position: relative;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    margin-left: 80px;
+    bottom: 55px;
+    max-width: 200px; /* Establece el ancho máximo del párrafo */
+    overflow: hidden; /* Oculta el texto que desborda del contenedor */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos (...) si el texto desborda */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+.checkmark-circle-outline {
+    position: absolute;
+    color: rgb(0, 159, 108);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    right: 15%;
+    top: 30%;
+}
+
+.close-circle-outline {
+    position: absolute;
+    color: rgb(0, 159, 108);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    right: 5%;
+    top: 30%;
+}
+
+.settings-container {
+    position: absolute;
+    border-top: 2px solid rgb(0, 159, 108);
+    border-bottom: 2px solid rgb(0, 159, 108);
+    box-shadow: -15px 10px 35px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    width: 70%;
+    height: 76%;
+    top: 4%;
+    user-select: none;
+    opacity: 0;
+}
+
+.settings-container ul {
+    /* Cambia el max-width a un valor que permita que los elementos li se coloquen uno al lado del otro */
+    max-width: 20%;
+    height: 100%;
+    background-color: #222;
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos se coloquen verticalmente */
+    padding: 0;
+    list-style: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.settings-container li {
+    width: 100%;
+    color: white;
+    text-align: center;
+    line-height: 5rem;
+    height: 5rem;
+}
+
+.settings-container li:hover {
+    background-color: #333;
+    cursor: pointer;
+}
+
+.shop-container {
+    position: absolute;
+    border-top: 2px solid rgb(0, 159, 108);
+    border-bottom: 2px solid rgb(0, 159, 108);
+    box-shadow: -15px 10px 35px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    width: 70%;
+    height: 76%;
+    top: 4%;
+    user-select: none;
+    opacity: 0;
+
+    display: flex;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    transform-style: preserve-3d;
+    flex-wrap: wrap;
+    padding: 2.5%;
+}
+
+.shop-item {
+    position: relative;
+    text-align: center;
+    border-radius: 20px;
+    width: 250px;
+    height: 350px;
+    margin: 40px;
+    transform-style: preserve-3d;
+    background: rgba(255,255,255,0.1);
+}
+
+.shop-item .item-name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    transform-style: preserve-3d;
+    transform: translate3d(0,0,75px);
+    color: #fff;
+    opacity: 0;
+    z-index: 10;
+    transition: 0.5s;
+}
+
+.shop-item:hover .item-name {
+    top: 30px;
+    opacity: 1;
+}
+
+.shop-item .buy {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform-style: preserve-3d;
+    color: #fff;
+    background: rgba(255,255,255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 20px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.5s;
+    transform: translate3d(-50%,0,80px);
+    width: 150px;
+    font-weight: 600;
+    text-align: center;
+    z-index: 10;
+}
+
+.shop-item .product {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+    transform: translate3d(-50%, -50%, 0);
+    max-width: 250px;
+    transition: 0.5s;
+}
+
+.shop-item:hover .product {
+    transform: translate3d(-50%, -50%, 100px);
+}
+
+@keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    opacity: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 50px;
+    height: 50%;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 50px;
+    background-color: rgb(0, 159, 108);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
